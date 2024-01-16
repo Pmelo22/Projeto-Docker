@@ -1,0 +1,96 @@
+# Criando o conteúdo dos arquivos para o projeto de exemplo do usuário
+
+# Conteúdo do arquivo docker-compose.yml
+docker_compose_content = """
+version: '3.8'
+
+services:
+  webserver:
+    image: httpd:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/usr/local/apache2/htdocs/
+"""
+
+# Conteúdo do arquivo index.html
+index_html_content = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minha Página Web</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Hello World!</h1>
+    <p>Esta é uma página web simples no container Apache.</p>
+    <button onclick="showMessage()">Clique Aqui</button>
+    <script src="script.js"></script>
+</body>
+</html>
+"""
+
+# Conteúdo do arquivo style.css
+style_css_content = """
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+"""
+
+# Conteúdo do arquivo script.js
+script_js_content = """
+function showMessage() {
+    alert("Bem-vindo à sua aplicação web Dockerizada!");
+}
+"""
+
+# Conteúdo do arquivo README.md
+readme_md_content = """
+# Meu Projeto Web Dockerizado
+
+Este é um exemplo simples de uma aplicação web rodando em um container Apache usando Docker Compose.
+
+## Como Executar
+
+1. Certifique-se de ter o Docker e o Docker Compose instalados.
+2. Clone este repositório.
+3. Navegue até o diretório do repositório e execute `docker-compose up`.
+4. Abra o navegador e acesse `http://localhost` para ver a aplicação rodando.
+"""
+
+# Salvando os conteúdos em arquivos no sistema de arquivos
+path = "/mnt/data/meu_projeto_web_dockerizado"
+os.makedirs(path, exist_ok=True)
+
+with open(f"{path}/docker-compose.yml", "w") as file:
+    file.write(docker_compose_content)
+
+with open(f"{path}/index.html", "w") as file:
+    file.write(index_html_content)
+
+with open(f"{path}/style.css", "w") as file:
+    file.write(style_css_content)
+
+with open(f"{path}/script.js", "w") as file:
+    file.write(script_js_content)
+
+with open(f"{path}/README.md", "w") as file:
+    file.write(readme_md_content)
+
+# Informando o caminho dos arquivos salvos
+path
+
